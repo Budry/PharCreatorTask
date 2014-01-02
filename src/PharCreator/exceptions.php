@@ -32,3 +32,12 @@ class FileNotFoundException extends IOException
 {
 
 }
+
+/**
+ * Class InvalidStateException
+ * @package PharCreator
+ */
+class InvalidStateException extends \RuntimeException
+{
+
+}
