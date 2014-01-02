@@ -18,3 +18,12 @@ class DirectoryNotFoundException extends \LogicException
 {
 
 }
+
+/**
+ * Class FileNotFoundException
+ * @package PharCreator
+ */
+class FileNotFoundException extends \LogicException
+{
+
+}
