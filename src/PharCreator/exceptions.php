@@ -10,11 +10,16 @@
 
 namespace PharCreator;
 
+class IOException extends \LogicException
+{
+
+}
+
 /**
  * Class DirectoryNotFoundException
  * @package PharCreator
  */
-class DirectoryNotFoundException extends \LogicException
+class DirectoryNotFoundException extends IOException
 {
 
 }
@@ -23,7 +28,7 @@ class DirectoryNotFoundException extends \LogicException
  * Class FileNotFoundException
  * @package PharCreator
  */
-class FileNotFoundException extends \LogicException
+class FileNotFoundException extends IOException
 {
 
 }
