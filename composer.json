@@ -1,0 +1,29 @@
+{
+	"name": "budry/phar-creator",
+	"description": "",
+	"keywords": [""],
+	"homepage": "",
+	"license": [""],
+	"type": "library",
+	"authors": [
+		{
+			"name": "Ondřej Záruba",
+			"homepage": "http://zaruba-ondrej.cz"
+		}
+	],
+	"support": {
+		"email": "zarubaondra@gmail.com",
+		"issues": ""
+	},
+	"require": {
+		"tasker/tasker": "2.1.*"
+	},
+	"require-dev": {
+		"kappa/tester": "1.0.*"
+	},
+	"autoload": {
+		"psr-0": {
+			"phar-creator": "src/"
+		}
+	}
+}
