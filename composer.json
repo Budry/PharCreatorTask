@@ -16,7 +16,8 @@
 		"issues": ""
 	},
 	"require": {
-		"tasker/tasker": "2.1.*"
+		"tasker/tasker": "2.1.*",
+		"kappa/filesystem": "2.0.*"
 	},
 	"require-dev": {
 		"kappa/tester": "1.0.*"
