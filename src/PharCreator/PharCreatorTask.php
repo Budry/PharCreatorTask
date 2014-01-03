@@ -57,8 +57,10 @@ class PharCreatorTask extends Task
 				}
 				$tmpName = sys_get_temp_dir() . DIRECTORY_SEPARATOR . $project->getBaseName() . time() . rand();
 				$tmp = $project->copy($tmpName, true, true);
-				$minify = new Minify($tmp);
-				$minify->run();
+				if (isset($options['minify']) && $options['minify']) {
+					$minify = new Minify($tmp);
+					$minify->run();
+				}
 				$phar = new \Phar($this->rootPath . DIRECTORY_SEPARATOR .$dest);
 				$phar->buildFromDirectory($tmp->getPath());
 				$phar->setStub("<?php\nrequire 'phar://' . __FILE__ . '/{$main}';\n__HALT_COMPILER();");
