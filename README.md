@@ -11,3 +11,13 @@ The best way to install budry/phar-creator is using Composer:
 ```bash
 $ composer require budry/phar-creator:@dev
 ```
+
+Before register task you must add path to directory with config file
+and next register task
+
+```php
+$takser = new Tasker();
+$takser->addConfig($rootPath . '/tasker.json')
+	->registerTask(new PharCreatorTask($rootPath), 'phar', 'phar');
+$takser->run();
+```
