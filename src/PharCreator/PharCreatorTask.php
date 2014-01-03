@@ -20,6 +20,21 @@ use Tasker\Tasks\Task;
  */
 class PharCreatorTask extends Task
 {
+	/** @var string */
+	private $rootPath;
+
+	/**
+	 * @param string $path
+	 * @throws DirectoryNotFoundException
+	 */
+	public function __construct($path)
+	{
+		if (!is_dir($path)) {
+			throw new DirectoryNotFoundException("Directory '{$path}' has not been found");
+		}
+		$this->rootPath = $path;
+	}
+
 	/**
 	 * @param array $config
 	 * @return mixed|void
@@ -29,12 +44,14 @@ class PharCreatorTask extends Task
 		$outputs = array();
 		if (count($config)) {
 			foreach ($config as $dest => $options) {
-				if (is_dir($options['source'])) {
-					$project = new Directory($options['source'], Directory::LOAD);
-				} elseif (is_file($options['source'])) {
-					$project = new File($options['source'], File::LOAD);
+				$source = $this->rootPath . DIRECTORY_SEPARATOR . $options['source'];
+				$main = $options['main'];
+				if (is_dir($source)) {
+					$project = new Directory($source, Directory::LOAD);
+				} elseif (is_file($source)) {
+					$project = new File($source, File::LOAD);
 				} else {
-					$outputs[] = "Project on path {$options['source']} has not been found";
+					$outputs[] = "Project on path {$source} has not been found";
 
 					return $outputs;
 				}
@@ -42,9 +59,9 @@ class PharCreatorTask extends Task
 				$tmp = $project->copy($tmpName, true, true);
 				$minify = new Minify($tmp);
 				$minify->run();
-				$phar = new \Phar($dest);
+				$phar = new \Phar($this->rootPath . DIRECTORY_SEPARATOR .$dest);
 				$phar->buildFromDirectory($tmp->getPath());
-				$phar->setStub("<?php\nrequire 'phar://' . __FILE__ . '/{$options['main']}';\n__HALT_COMPILER();");
+				$phar->setStub("<?php\nrequire 'phar://' . __FILE__ . '/{$main}';\n__HALT_COMPILER();");
 				$tmp->remove();
 				$outputs[] = "Phar archive {$dest} is created";
 			}
