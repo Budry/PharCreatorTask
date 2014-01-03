@@ -1,0 +1,8 @@
+{
+	"phar": {
+		"./testProject.phar": {
+			"source": "./TestProject",
+			"main": "bootstrap.php"
+		}
+	}
+}
