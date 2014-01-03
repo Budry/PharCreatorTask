@@ -21,3 +21,13 @@ $takser->addConfig($rootPath . '/tasker.json')
 	->registerTask(new PharCreatorTask($rootPath), 'phar', 'phar');
 $takser->run();
 ```
+
+Into tasker config file add config section
+```json
+"phar": {
+	"./testProject.phar": {
+		"source": "./TestProject",
+		"main": "bootstrap.php"
+	}
+}
+```
