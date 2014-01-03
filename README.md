@@ -24,10 +24,12 @@ $takser->run();
 
 Into tasker config file add config section
 ```json
-"phar": {
-	"./testProject.phar": {
-		"source": "./TestProject",
-		"main": "bootstrap.php"
+{
+	"phar": {
+		"./testProject.phar": {
+			"source": "./TestProject",
+			"main": "bootstrap.php"
+		}
 	}
 }
 ```
