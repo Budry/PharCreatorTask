@@ -37,14 +37,13 @@ class Minify
 	public function run()
 	{
 		$shrink = new ShrinkPHP();
-		if ($this->fileStorage instanceof File) {
-			$shrink->shrinkFile($this->fileStorage->getPath());
-		} elseif ($this->fileStorage instanceof Directory) {
-			foreach ($this->fileStorage->getContent() as $path => $file) {
-				$shrink->shrinkFile($path);
+		$iterator =  new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($this->fileStorage->getPath(), \RecursiveDirectoryIterator::SKIP_DOTS));
+		foreach ($iterator as $file) {
+			$fileName = $file->getBaseName();
+			$nameLength = strlen($fileName);
+			if (substr($fileName, $nameLength - 4, $nameLength) == ".php") {
+				$shrink->shrinkFile($file);
 			}
-		} else {
-			throw new InvalidStateException("Invalid instance of file storage");
 		}
 	}
 }
