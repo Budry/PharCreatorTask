@@ -3,7 +3,7 @@
 	"description": "",
 	"keywords": ["task"],
 	"homepage": "",
-	"license": [""],
+	"license": ["MIT"],
 	"type": "library",
 	"authors": [
 		{
