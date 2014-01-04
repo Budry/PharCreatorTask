@@ -27,7 +27,7 @@ Into tasker config file add config section
 {
 	"phar": {
 		"./testProject.phar": {
-			"minify" false
+			"minify" false,
 			"source": "./TestProject",
 			"main": "bootstrap.php"
 		}
